@@ -1,10 +1,12 @@
-Package: Samira_first_package_lab3
+Package: Samirafirstpackagelab3
 Type: Package
-Title: What the package does (euclidean and dijkstra algorithm)
+Title: R package Samirafirstpackagelab3
 Version: 1.0
 Date: 2020-09-14
 Author: Samira
-Maintainer: Who to complain to <yourfault@somewhere.net>
-Description: More about what it does (maybe more than one line)
-License: What license is it under?
+Maintainer: samira <barhemat@mail.com>
+Description: two functions based on euclidean and dijkstra algorithm.
+License: GPL-3
+LazyData:true
+Encoding:UTF-8
 RoxygenNote: 7.1.1

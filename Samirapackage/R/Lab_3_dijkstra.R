@@ -5,7 +5,7 @@
 #' @param init_node source.node from data fram.
 #' @return The shortest path (d) of every other node from init_node(s) as a vector \code{x} and \code{y}.
 #' @seealso \url{https://en.wikipedia.org/wiki/dijkstra_algorithm}
-#'  
+#' @export
 dijkstra <- function(graph_v1_v2_w,init_node){
   # calculate the shortest path (d) of every other node from init_node(s) as a vector
   # by dijkstra algorithm

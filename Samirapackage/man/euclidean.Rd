@@ -2,7 +2,7 @@
 % Please edit documentation in R/Lab_3_euclidean.R
 \name{euclidean}
 \alias{euclidean}
-\title{Euclidean}
+\title{euclidean}
 \usage{
 euclidean(a, b)
 }
@@ -12,13 +12,13 @@ euclidean(a, b)
 \item{b}{A number.}
 }
 \value{
-Greatest common divisor of a and b \code{x} and \code{y}.
+Greatest common divisor of a and b \code{a} and \code{b}.
 }
 \description{
-(a,b)=(b,r) if a=b*q+r and r is remaining
+(a,b)=(b,r) if a=b*q+r and r is remaining.
 }
 \details{
-greatest common divisor two numbers by euclidean algorithm
+greatest common divisor two numbers by euclidean algorithm.
 }
 \seealso{
 \url{https://en.wikipedia.org/wiki/Euclidean_algorithm}

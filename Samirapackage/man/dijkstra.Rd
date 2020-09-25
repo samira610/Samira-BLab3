@@ -4,18 +4,22 @@
 \alias{dijkstra}
 \title{Dijkstra}
 \usage{
-dijkstra(graph_v1_v2_w, init_node)
+dijkstra(graph, init_node)
 }
 \arguments{
-\item{graph_v1_v2_w}{A data frame.}
+\item{graph}{A data frame.}
 
-\item{init_node}{source.node from data fram.}
+\item{init_node}{source.node from data frame.}
 }
 \value{
-The shortest path (d) of every other node from init_node(s) as a vector \code{x} and \code{y}.
+The shortest path (d) of every other node from init_node(s) as a vector \code{distant}.
 }
 \description{
-(a,b)=(b,r) if a=b*q+r and r is remaining
+Dijkstra's algorithm marks the distance (from init node) to every other node.
+This is done by determining the sum of the distance between an unvisited intersection and the value of the current intersection and then relabeling the unvisited intersection with this value (the sum) if it is less than the unvisited intersection's current value.
+This algorithm therefore expands outward from the starting point, interactively considering every node that is closer in terms of shortest path distance until it reaches the destination.
+This returns an array containing the length of the shortest path from the start node (init node) to each other node.
+It is only guaranteed to return correct results if there are no negative edges in the graph. Positive cycles are fine.
 }
 \details{
 Calculate the shortest path (d) of every other node from init_node(s) as a vector by Dijkstra algorithm

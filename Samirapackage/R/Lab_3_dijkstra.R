@@ -6,49 +6,45 @@
 #' This returns an array containing the length of the shortest path from the start node (init node) to each other node.
 #' It is only guaranteed to return correct results if there are no negative edges in the graph. Positive cycles are fine.
 #' @param graph A data frame.
-#' @param init_node source.node from data fram.
+#' @param init_node source.node from data frame.
 #' @return The shortest path (d) of every other node from init_node(s) as a vector \code{distant}.
 #' @seealso \url{https://en.wikipedia.org/wiki/dijkstra_algorithm}
 #' @export
+
 dijkstra <- function(graph,init_node){
   # calculate the shortest path (d) of every other node from init_node(s) as a vector
   # by dijkstra algorithm
   # v1 and v2 are the edge of graph
   # w is the weight of the edge
   stopifnot (is.data.frame(graph), is.numeric(init_node))
-    s <- 0
-    distant<-0
-    v1 <- graph[,1]
-    v2 <- graph[,2]
-    w <- graph[,3]
-    distant = rep(Inf, length(graph[,1]))
-    visited_nodes = rep(FALSE, length(graph[,1]))
-    distant[init_node] = 0
-    repeat{
-      shortest_distant = Inf
-      shortest_index = -1
-      for(i in seq_along(distant)) {
-        if(distant[i] < shortest_distant && !visited_nodes[i]){
-          shortest_distant = distant[i]
-          shortest_index = i
-        }
-      }
-      cat("Visiting node ", shortest_index, " with current distance ", shortest_distant, "\n")
-      
-      if(shortest_index == -1){
-        return (distant)
-      }
-      for(i in seq_along(graph[shortest_index,])) {
-        if(graph[shortest_index,i] != 0 && distant[i] > distant[shortest_index] + graph[shortest_index,i]){
-          # ...Save this path as new shortest path.
-          distant[i] = distant[shortest_index] + graph[shortest_index,i]
-          cat("Updating distance of node ", i, " to ", distances[i], "\n")
-        }
-        # Lastly, note that we are finished with this node.
-        visited_nodes[shortest_index] = TRUE
-        cat("Visited nodes: ", visited_nodes, "\n")
-        cat("Currently lowest distances: ", distant, "\n")
+  n<- unique(graph$v1)
+  d <- matrix(data = Inf, nrow = length(unique(graph$v1)), ncol = length(unique(graph$v2)))
+  
+  #creating the distance matrix d=w[v1,v2]
+  for (i in seq_along(graph$v1)) {
+    a<- graph$v1[i]
+    b<- graph$v2[i]
+    d[a,b]<-graph$w[i]
+    d[a,a]<-0
+  }
+  
+  distant <- rep(Inf, length(unique(graph$v1)))
+  visited_nodes <- rep(FALSE, length(unique(graph$v2)))
+  distant[init_node] <- 0
+  visited_nodes[init_node]<-TRUE
+  
+  for(i in seq_along(n)) {
+    for (j in seq_along(n)) {
+      shortd<- distant[i]+d[i,j]
+      if (i!=j && shortd< distant[j]) {
+        visited_nodes[j]<- TRUE
+        distant[j]<- shortd
       }
     }
+  }
+  
+  if ((all(visited_nodes==TRUE))==TRUE){
+    return(distant)
+  }
 }
-#1.1.2 dijkstra()
+

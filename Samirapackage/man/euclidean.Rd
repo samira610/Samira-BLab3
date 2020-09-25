@@ -15,7 +15,8 @@ euclidean(a, b)
 Greatest common divisor of a and b \code{a} and \code{b}.
 }
 \description{
-(a,b)=(b,r) if a=b*q+r and r is remaining.
+In this algorithm, the quotient and remainder are found by repeated subtraction, until the last remainder that is grater than zero. 
+Euclidean division reduces all the steps between two exchanges into a single step.
 }
 \details{
 greatest common divisor two numbers by euclidean algorithm.

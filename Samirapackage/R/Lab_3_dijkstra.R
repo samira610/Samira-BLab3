@@ -18,8 +18,8 @@ dijkstra <- function(graph,init_node){
   # w is the weight of the edge
   stopifnot (is.data.frame(graph), is.numeric(init_node))
   n<- unique(graph$v1)
-  d <- matrix(data = Inf, nrow = length(unique(graph$v1)), ncol = length(unique(graph$v2)))
   
+  d <- matrix(data = Inf, nrow = length(unique(graph$v1)), ncol = length(unique(graph$v2)))
   #creating the distance matrix d=w[v1,v2]
   for (i in seq_along(graph$v1)) {
     a<- graph$v1[i]
@@ -33,18 +33,21 @@ dijkstra <- function(graph,init_node){
   distant[init_node] <- 0
   visited_nodes[init_node]<-TRUE
   
+  repeat {
   for(i in seq_along(n)) {
     for (j in seq_along(n)) {
-      shortd<- distant[i]+d[i,j]
-      if (i!=j && shortd< distant[j]) {
+      shortest_d<- distant[i]+d[i,j]
+      if (i!=j && shortest_d< distant[j]) {
         visited_nodes[j]<- TRUE
-        distant[j]<- shortd
+        distant[j]<- shortest_d
       }
     }
   }
   
   if ((all(visited_nodes==TRUE))==TRUE){
     return(distant)
+    break
+  }
   }
 }
 
